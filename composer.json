@@ -1,0 +1,40 @@
+{
+    "name": "dws-format-filter",
+    "description": "Filters code to make it compatible with DWS Coding Standards",
+    "keywords": ["PHP Beautifier, PHP Code Sniffer"],
+    "authors": [
+        {
+            "name": "Chris Ryan",
+            "email": "chris.ryan@dominionenterprises.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Robert Bittle",
+            "email": "robert.bittle@dominionenterprises.com",
+            "role": "Developer"
+        }
+    ],
+    "license": "proprietary",
+    "repositories": [
+      {
+        "type": "composer",
+        "url": "http://dominionenterprises.github.io/dws-composer"
+      },
+      {
+        "type": "pear",
+        "url": "http://pear.phpunit.de"
+      },
+      {
+        "type": "pear",
+        "url": "http://pear.php.net"
+      }
+    ],
+    "require": {
+        "php": "~5.4.6",
+        "pear-phpunit/phpunit": "~3.4.15",
+        "pear-pear/pear": "~1.9.4",
+        "pear-pear/PHP_Beautifier": "~0.1.15",
+        "squizlabs/php_codesniffer": "~1.4",
+        "dominionenterprises/dws-coding-standard": "~0.3"
+    }
+}
