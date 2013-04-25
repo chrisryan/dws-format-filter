@@ -49,11 +49,16 @@ class PHP_Beautifier_Filter_DWS extends PHP_Beautifier_Filter
         $oBeaut->setIndentChar(' ');
         $oBeaut->setIndentNumber(4);
         $oBeaut->setNewLine("\n");
+        array_push($oBeaut->aModesAvailable, 'variable_variable');
     }
 
     function t_open_brace($sTag)
     {
-        if ($this->oBeaut->openBraceDontProcess()) {
+        if ($this->oBeaut->openBraceDontProcess() || $this->oBeaut->isPreviousTokenContent('$')) {
+            if ($this->oBeaut->isPreviousTokenContent('$')) {
+                $this->oBeaut->setMode('variable_variable');
+            }
+
             $this->oBeaut->add($sTag);
             if ($this->oBeaut->getMode('string_index') && !$this->oBeaut->getMode('double_quote')) {
                 $this->_iNestedStringIndex++;
@@ -85,7 +90,11 @@ class PHP_Beautifier_Filter_DWS extends PHP_Beautifier_Filter
             $this->oBeaut->setMode('string_index');
         }
 
-        if ($this->oBeaut->getMode('string_index') or $this->oBeaut->getMode('double_quote')) {
+        if ($this->oBeaut->getMode('string_index') || $this->oBeaut->getMode('double_quote') || $this->oBeaut->getMode('variable_variable')) {
+            if ($this->oBeaut->getMode('variable_variable')) {
+                $this->oBeaut->unsetMode('variable_variable');
+            }
+
             $this->oBeaut->add($sTag);
         } else {
             if ($this->oBeaut->getControlSeq() == T_SWITCH) {
