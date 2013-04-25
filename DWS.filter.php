@@ -90,7 +90,7 @@ class PHP_Beautifier_Filter_DWS extends PHP_Beautifier_Filter
             if ($this->oBeaut->isNextTokenContent('else') || $this->oBeaut->isNextTokenContent('elseif') || $this->oBeaut->isNextTokenContent('catch')) {
                 $this->oBeaut->add(' ');
             } else {
-                if (!$this->oBeaut->isNextTokenContent('}')) {
+                if (!$this->oBeaut->isNextTokenContent('}') && !$this->oBeaut->isNextTokenContent(null)) {
                     $this->oBeaut->addNewLine();
                 }
                 $this->oBeaut->addNewLineIndent();
